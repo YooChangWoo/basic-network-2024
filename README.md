@@ -257,6 +257,41 @@
     - dup & dup2
     - fdopen
     - fileno
+
+## 6일차
+- epoll의 이해와 활용
+    - epoll_create : epoll 파일 디스크립터 저장소 생성
+    - epoll_ctl : 저장소에 파일 디스크립터 등록 및 삭제
+        - EPOLL_CTL_MOD : 등록된 파일 스크립터의 이벤트 발생상황을 변경한다.
+    - epoll_wait : select 함수와 마찬가지로 파일 스크립터의 변화를 대기한다.
+
+    - Level Trigger : 입력 버퍼에 데이터가 남아있는 동안에 계속해서 이벤트가 등록된다.
+    - Edge Trigger
+        - 변수 errno을 이용한 오류의 원인을 확인하는 방법
+        - 넌-블로킹(Non-blocking)IO를 위한 소켓의 특성을 변경하는 방법
+
+- 멀티쓰레드 기반의 서버구현
+    - 프로세스 : 운영체제 관점에서 별도의 실행흐름을 구성하는 단위
+    - 쓰레드 : 프로세스 관점에서 별도의 실행흐름을 구성하는 단위
+    - thread_main
+    - 임계영역
+        - Threa-safe function
+        - Thread-unsafe function
+    - Worker 쓰레드 모델
+
+- 쓰레드 동기화
+    - 동일한 메모리 영역으로 동시접근이 발생하는 상황
+    - 동일한 메모리 영역에 접근하는 쓰레드의 실행순서를 지정해야 하는 상황
+    - 뮤텍스(Mutex)
+    - 세마포어(Semaphore)
+
+- 쓰레드를 소멸하는 두 가지 방법
+    - pthread_join 
+    - pthread_detack 
+- 다중접속 서버의 구현
+    - A 쓰레드는 배열 clnt_socks에서 소켓 정보 삭제, 동시에 B쓰레드는 변수 clnt_cnt 참조하기
+    - A 쓰레드는 변수 clnt_cnt 참조, 동시에 B 쓰레드는 배열 clnt_socks에 소켓 정보 추가하기
+
     
 
 
